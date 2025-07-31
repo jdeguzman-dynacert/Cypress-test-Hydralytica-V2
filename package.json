@@ -1,0 +1,36 @@
+{
+  "name": "hydralytica-tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "test:users": "cypress run --spec 'cypress/e2e/users.cy.js' --reporter mochawesome --reporter-options reportDir=reports/users,reportFilename=users,overwrite=false,json=true && npm run report:merge:users && npm run report:generate:users",
+
+    "test:edit-user": "cypress run --spec 'cypress/e2e/edit_user.cy.js' --reporter mochawesome --reporter-options reportDir=reports/edit-user,reportFilename=edit-user,overwrite=false,json=true && npm run report:merge:edit-user && npm run report:generate:edit-user",
+
+    "test:delete-user": "cypress run --spec 'cypress/e2e/delete_user.cy.js' --reporter mochawesome --reporter-options reportDir=reports/delete-user,reportFilename=delete-user,overwrite=false,json=true && npm run report:merge:delete-user && npm run report:generate:delete-user",
+
+    "test:create-organization": "cypress run --spec 'cypress/e2e/create_organization.cy.js' --reporter mochawesome --reporter-options reportDir=reports/create-organization,reportFilename=create-organization,overwrite=false,json=true && npm run report:merge:create-organization && npm run report:generate:create-organization",
+
+    "test:all": "cypress run --spec 'cypress/e2e/users.cy.js,cypress/e2e/edit_user.cy.js,cypress/e2e/delete_user.cy.js,cypress/e2e/create_organization.cy.js' --reporter mochawesome --reporter-options reportDir=reports/all,reportFilename=all,overwrite=false,json=true && npm run report:merge:all && npm run report:generate:all",
+
+    "report:merge:users": "npx mochawesome-merge reports/users/*.json > reports/users/report.json",
+    "report:merge:edit-user": "npx mochawesome-merge reports/edit-user/*.json > reports/edit-user/report.json",
+    "report:merge:delete-user": "npx mochawesome-merge reports/delete-user/*.json > reports/delete-user/report.json",
+    "report:merge:create-organization": "npx mochawesome-merge reports/create-organization/*.json > reports/create-organization/report.json",
+    "report:merge:all": "npx mochawesome-merge reports/all/*.json > reports/all/report.json",
+
+    "report:generate:users": "npx marge reports/users/report.json --reportDir reports/users --reportFilename index.html --inline",
+    "report:generate:edit-user": "npx marge reports/edit-user/report.json --reportDir reports/edit-user --reportFilename index.html --inline",
+    "report:generate:delete-user": "npx marge reports/delete-user/report.json --reportDir reports/delete-user --reportFilename index.html --inline",
+    "report:generate:create-organization": "npx marge reports/create-organization/report.json --reportDir reports/create-organization --reportFilename index.html --inline",
+    "report:generate:all": "npx marge reports/all/report.json --reportDir reports/all --reportFilename index.html --inline"
+  },
+  "devDependencies": {
+    "cypress": "^14.5.1",
+    "mochawesome": "^7.1.3",
+    "mochawesome-merge": "^5.0.0",
+    "mochawesome-report-generator": "^6.2.0"
+  }
+}

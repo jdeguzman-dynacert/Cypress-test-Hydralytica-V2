@@ -1,0 +1,304 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 10,
+    "passes": 4,
+    "pending": 0,
+    "failures": 6,
+    "start": "2025-07-28T16:10:26.952Z",
+    "end": "2025-07-28T16:12:22.769Z",
+    "duration": 115817,
+    "testsRegistered": 10,
+    "passPercent": 40,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "4ba90801-dbc1-4560-ad63-1cd8b7bc138b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\edit_user.cy.js",
+      "file": "cypress\\e2e\\edit_user.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+          "title": "Hydralytica - Full Edit User Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Updates First and Last Name (timestamped)",
+              "fullTitle": "Hydralytica - Full Edit User Flow Updates First and Last Name (timestamped)",
+              "timedOut": null,
+              "duration": 20150,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"name\"]').clear().type(`UpdatedFirst-${timestamp}`);\ncy.get('input[name=\"lastName\"]').clear().type(`UpdatedLast-${timestamp}`);\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected to find content: '/Updated Successfully!/i' but never did.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find content: '/Updated Successfully!/i' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_user.cy.js:9:59)\n    at wrapped (https://hydralytica.com/__cypress/runner/cypress_runner.js:141524:43)",
+                "diff": null
+              },
+              "uuid": "a4d08687-e318-4130-aad9-9102e9ac94b3",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Updates Login Email (timestamped)",
+              "fullTitle": "Hydralytica - Full Edit User Flow Updates Login Email (timestamped)",
+              "timedOut": null,
+              "duration": 9902,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button svg.lucide-pencil').first().parents('button').click();\ncy.get('input[name=\"contactFields.contact\"]').clear().type(newEmail);\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();",
+              "err": {},
+              "uuid": "c809bb60-303e-4bb8-8d43-c7976227d473",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Updates Residential Address (timestamped)",
+              "fullTitle": "Hydralytica - Full Edit User Flow Updates Residential Address (timestamped)",
+              "timedOut": null,
+              "duration": 9565,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.country\"]').clear().type(`Canada-${timestamp}`);\ncy.get('input[name=\"addressFields.city\"]').clear().type(`Vancouver-${timestamp}`);\ncy.get('input[name=\"addressFields.address\"]').clear().type(`987 Updated Street ${timestamp}`);\ncy.get('input[name=\"addressFields.zipCode\"]').clear().type('A1B2C3');\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();\ncy.contains('td', 'Residential').parent('tr').within(() => {\n  cy.contains(`Canada-${timestamp}`);\n  cy.contains(`Vancouver-${timestamp}`);\n  cy.contains(`987 Updated Street ${timestamp}`);\n});",
+              "err": {},
+              "uuid": "71fc59bb-f50f-4a92-90d1-af98ee7b3a59",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Blocks empty required fields",
+              "fullTitle": "Hydralytica - Full Edit User Flow Blocks empty required fields",
+              "timedOut": null,
+              "duration": 12481,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.country\"]').clear().blur();\ncy.get('input[name=\"addressFields.city\"]').clear().blur();\ncy.get('input[name=\"addressFields.address\"]').clear().blur();\ncy.get('input[name=\"addressFields.country\"]').should('have.attr', 'aria-invalid', 'true');\ncy.get('input[name=\"addressFields.city\"]').should('have.attr', 'aria-invalid', 'true');\ncy.get('input[name=\"addressFields.address\"]').should('have.attr', 'aria-invalid', 'true');\ncy.contains('button', 'Update').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<input#:r3t:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<input#:r3t:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_user.cy.js:66:50)",
+                "diff": "- 'false'\n+ 'true'\n"
+              },
+              "uuid": "cff3792b-4de5-4213-9406-be948b016ac2",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Blocks invalid Zip Code",
+              "fullTitle": "Hydralytica - Full Edit User Flow Blocks invalid Zip Code",
+              "timedOut": null,
+              "duration": 11672,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.zipCode\"]').clear().type('###').blur();\ncy.get('input[name=\"addressFields.zipCode\"]').should('have.attr', 'aria-invalid', 'true');\ncy.contains('button', 'Update').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<input#:r3k:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<input#:r3k:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_user.cy.js:76:50)",
+                "diff": "- 'false'\n+ 'true'\n"
+              },
+              "uuid": "515d13ec-39cb-4fab-b3cd-8e5f5041130a",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Changes Address Type via dropdown",
+              "fullTitle": "Hydralytica - Full Edit User Flow Changes Address Type via dropdown",
+              "timedOut": null,
+              "duration": 7788,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('button[role=\"combobox\"]').click();\ncy.get('select[aria-hidden=\"true\"] option').contains('Billing').then(option => {\n  cy.wrap(option).then(opt => cy.get('select[aria-hidden=\"true\"]').select(opt.val()));\n});\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();\ncy.contains('td', 'Billing').should('exist');",
+              "err": {
+                "message": "CypressError: `cy.click()` can only be called on a single element. Your subject contained 4 elements. Pass `{ multiple: true }` if you want to serially click each element.\n\nhttps://on.cypress.io/click",
+                "estack": "CypressError: `cy.click()` can only be called on a single element. Your subject contained 4 elements. Pass `{ multiple: true }` if you want to serially click each element.\n\nhttps://on.cypress.io/click\n    at mouseAction (https://hydralytica.com/__cypress/runner/cypress_runner.js:113980:68)\n    at Context.click (https://hydralytica.com/__cypress/runner/cypress_runner.js:114147:14)\n    at wrapped (https://hydralytica.com/__cypress/runner/cypress_runner.js:141532:19)\n    at <unknown> (https://hydralytica.com/__cypress/runner/cypress_runner.js:147477:15)\n    at tryCatcher (https://hydralytica.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://hydralytica.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://hydralytica.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromiseCtx (https://hydralytica.com/__cypress/runner/cypress_runner.js:1583:10)\n    at _drainQueueStep (https://hydralytica.com/__cypress/runner/cypress_runner.js:2381:12)\n    at _drainQueue (https://hydralytica.com/__cypress/runner/cypress_runner.js:2370:9)\n    at Async._drainQueues (https://hydralytica.com/__cypress/runner/cypress_runner.js:2386:5)\n    at Async.drainQueues (https://hydralytica.com/__cypress/runner/cypress_runner.js:2256:14)",
+                "diff": null
+              },
+              "uuid": "9d1dd700-fa91-406f-b6f5-074eafdcd606",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sequentially updates Residential & Business rows (timestamped)",
+              "fullTitle": "Hydralytica - Full Edit User Flow Sequentially updates Residential & Business rows (timestamped)",
+              "timedOut": null,
+              "duration": 11022,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.city\"]').clear().type(`Toronto-${timestamp}`);\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();\ncy.contains('td', 'Business').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.city\"]').clear().type(`New York-${timestamp}`);\ncy.contains('button', 'Update').click();\ncy.waitForSuccessToast();\ncy.contains('td', 'Residential').parent('tr').within(() => cy.contains(`Toronto-${timestamp}`));\ncy.contains('td', 'Business').parent('tr').within(() => cy.contains(`New York-${timestamp}`));",
+              "err": {},
+              "uuid": "8e060790-565d-48bb-b5cd-d2d2a46c4893",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Sorts by Country (ascending & descending)",
+              "fullTitle": "Hydralytica - Full Edit User Flow Sorts by Country (ascending & descending)",
+              "timedOut": null,
+              "duration": 8268,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('th').contains('Country').click();\ncy.get('tbody tr').then(rows => {\n  const countries = [...rows].map(r => r.cells[1].innerText);\n  expect(countries).to.deep.equal([...countries].sort());\n});\ncy.get('th').contains('Country').click();\ncy.get('tbody tr').then(rows => {\n  const countries = [...rows].map(r => r.cells[1].innerText);\n  expect(countries).to.deep.equal([...countries].sort().reverse());\n});",
+              "err": {
+                "message": "AssertionError: expected [ Array(3) ] to deeply equal [ Array(3) ]",
+                "estack": "AssertionError: expected [ Array(3) ] to deeply equal [ Array(3) ]\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_user.cy.js:112:32)\n    at getRet (https://hydralytica.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://hydralytica.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://hydralytica.com/__cypress/runner/cypress_runner.js:4285:29)",
+                "diff": "- [ 'jane.doe.1753384104162@cypresstest.com', 'Canada', 'USA' ]\n+ [ 'Canada', 'USA', 'jane.doe.1753384104162@cypresstest.com' ]\n"
+              },
+              "uuid": "403b71f1-00ae-4389-8578-b7aa96863f4c",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Deletes Business row",
+              "fullTitle": "Hydralytica - Full Edit User Flow Deletes Business row",
+              "timedOut": null,
+              "duration": 13645,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Business').parent('tr').find('button svg.lucide-trash').parents('button').click();\ncy.contains('button', 'Confirm').click();\ncy.contains('td', 'Business').should('not.exist');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Confirm' within the selector: 'button' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Confirm' within the selector: 'button' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_user.cy.js:124:7)",
+                "diff": null
+              },
+              "uuid": "590846a9-ac39-4c1b-b36a-e3230c92b08e",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cancels edit without saving changes",
+              "fullTitle": "Hydralytica - Full Edit User Flow Cancels edit without saving changes",
+              "timedOut": null,
+              "duration": 9299,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('td', 'Residential').parent('tr').find('button svg.lucide-pencil').parents('button').click();\ncy.get('input[name=\"addressFields.city\"]').clear().type(`ShouldNotSave-${timestamp}`);\ncy.contains('button', 'Cancel').click();\ncy.contains('td', 'Residential').parent('tr').within(() => {\n  cy.contains(`ShouldNotSave-${timestamp}`).should('not.exist');\n});",
+              "err": {},
+              "uuid": "0ecf722c-ae44-4aef-852d-c2550c85a342",
+              "parentUUID": "8decc0aa-5aa7-417f-832e-2d5ca93ff043",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c809bb60-303e-4bb8-8d43-c7976227d473",
+            "71fc59bb-f50f-4a92-90d1-af98ee7b3a59",
+            "8e060790-565d-48bb-b5cd-d2d2a46c4893",
+            "0ecf722c-ae44-4aef-852d-c2550c85a342"
+          ],
+          "failures": [
+            "a4d08687-e318-4130-aad9-9102e9ac94b3",
+            "cff3792b-4de5-4213-9406-be948b016ac2",
+            "515d13ec-39cb-4fab-b3cd-8e5f5041130a",
+            "9d1dd700-fa91-406f-b6f5-074eafdcd606",
+            "403b71f1-00ae-4389-8578-b7aa96863f4c",
+            "590846a9-ac39-4c1b-b36a-e3230c92b08e"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 113792,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "edit-user",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/edit-user",
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "edit-user"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

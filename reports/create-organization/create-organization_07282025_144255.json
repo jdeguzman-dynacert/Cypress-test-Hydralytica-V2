@@ -1,0 +1,108 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-28T18:42:43.472Z",
+    "end": "2025-07-28T18:42:55.128Z",
+    "duration": 11656,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "cac4f830-9b6f-427b-b138-1bf97d221faf",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create_organization.cy.js",
+      "file": "cypress\\e2e\\create_organization.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "87c8bf15-bb0f-4002-b08a-6d560dc2f323",
+          "title": "Hydralytica v2 - Login and Navigate to Organization Page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "logs in and fills up the create organization form",
+              "fullTitle": "Hydralytica v2 - Login and Navigate to Organization Page logs in and fills up the create organization form",
+              "timedOut": null,
+              "duration": 11579,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Step 1: Log in\ncy.loginHydralytica();\n// Step 2: Wait for Dashboard\ncy.contains('Dashboard', {\n  timeout: 10000\n}).should('be.visible');\n// Step 3: Visit the organization creation page\ncy.visit('https://hydralytica.com/organizations/create');\n// Step 4: Fill in Organization Name\ncy.get('input[name=\"name\"]', {\n  timeout: 10000\n}).type('My Cypress Organization');\n// Step 5: Select 4th item (\"Corporate\") from hidden <select>\ncy.get('select[aria-hidden=\"true\"]', {\n  timeout: 10000\n}).eq(0).select('Corporate', {\n  force: true\n});\n// Step 6: Select Parent Organization (second dropdown)\ncy.get('select[aria-hidden=\"true\"]', {\n  timeout: 10000\n}).eq(1) // select the second dropdown\n.find('option').contains('dynaCERT Inc.').then($option => {\n  const val = $option.attr('value');\n  cy.get('select[aria-hidden=\"true\"]').eq(1).select(val, {\n    force: true\n  });\n});\n// Step 7: Fill in Notes (Optional)\ncy.get('textarea[name=\"notes\"]', {\n  timeout: 10000\n}).type('Test org created by Cypress.');\n// Step 8: Fill in Contact Email\ncy.get('input[name=\"contactFields.contact\"]', {\n  timeout: 10000\n}).type('contact@example.com');\n// Step 9: Fill in Contact Description (Optional)\ncy.get('textarea[name=\"contactFields.description\"]', {\n  timeout: 10000\n}).type('Main contact email.');\ncy.contains('button', 'Add').eq(0).should('be.visible').click({\n  force: true\n});\n// Step 10: Country\ncy.get('input[name=\"addressFields.country\"]').type('Canada');\n// Step 11: City\ncy.get('input[name=\"addressFields.city\"]').type('Toronto');\n// Step 12: Address\ncy.get('input[name=\"addressFields.address\"]').type('123 Queen Street');\n// Step 13: Zip Code\ncy.get('input[name=\"addressFields.zipCode\"]').type('M5H 2N2');\n// Step 14: Reference\ncy.get('input[name=\"addressFields.reference\"]').type('Suite 500');\n// Step 15: Address Description\ncy.get('input[name=\"addressFields.description\"]').type('Head office location.');\n// Click the second \"Add\" button (e.g., for address)\ncy.wait(1000);\n// Ensure button is enabled then click \"Add\"\ncy.contains('div[data-slot=\"card-title\"]', 'Address').parents('[data-slot=\"card\"]').within(() => {\n  cy.contains('button', 'Add').click();\n});\n// Step 16: Click Create\ncy.contains('button', 'Create', {\n  timeout: 10000\n}).click();",
+              "err": {},
+              "uuid": "cb5ff3c1-c34f-4b7e-b51a-d488da58831f",
+              "parentUUID": "87c8bf15-bb0f-4002-b08a-6d560dc2f323",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cb5ff3c1-c34f-4b7e-b51a-d488da58831f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 11579,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "create-organization",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/create-organization",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "create-organization"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
