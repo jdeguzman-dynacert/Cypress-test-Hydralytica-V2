@@ -2,7 +2,7 @@ describe('Machine Creation Form', () => {
   beforeEach(() => {
     cy.loginHydralytica();
     cy.contains('Dashboard', { timeout: 10000 }).should('be.visible');
-    cy.visit('https://hydralytica.com/machines/create');
+    cy.visit('/machines/create');
     cy.contains('Info').should('be.visible');
   });
 
