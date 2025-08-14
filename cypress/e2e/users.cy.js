@@ -7,7 +7,7 @@ describe('Hydralytica v2 - Create User Validation Suite', () => {
   // Runs before each test case to perform login and navigate to user creation page
   beforeEach(() => {
     cy.loginHydralytica(); // Custom command to login
-    cy.visit('https://hydralytica.com/users/create'); // Visit user creation page
+    cy.visit('/users/create'); // Visit user creation page
     // Confirm Dashboard is visible (page loaded successfully)
     cy.contains('Dashboard', { timeout: 10000 }).should('be.visible');
   });

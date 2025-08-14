@@ -2,7 +2,7 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: 'https://hydralytica.com',
+    baseUrl: 'https://staging.hydralytica.dynacert.com',
     screenshotOnRunFailure: true,
     video: false,
     setupNodeEvents(on, config) {

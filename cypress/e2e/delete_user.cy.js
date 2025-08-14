@@ -5,7 +5,7 @@ describe('Hydralytica - Delete Test User', () => {
 
   beforeEach(() => {
     cy.loginHydralytica(); // Custom login command
-    cy.visit('https://hydralytica.com/users');
+    cy.visit('/users');
     cy.contains('Dashboard', { timeout: 10000 }).should('be.visible');
   });
 

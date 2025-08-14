@@ -14,7 +14,7 @@ describe('Hydralytica v2 - Create Organization with Extensive Validations', () =
     cy.contains('Dashboard', { timeout: 10000 }).should('be.visible');
 
     // Navigate directly to the organization creation page
-    cy.visit('https://hydralytica.com/organizations/create');
+    cy.visit('/organizations/create');
   });
 
   // ✅ Test: Create a new organization with valid inputs

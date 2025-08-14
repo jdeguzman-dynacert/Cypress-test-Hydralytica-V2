@@ -21,7 +21,7 @@ describe('Hydralytica - Full Edit User Flow', () => {
   // Runs before each test case: login, visit users page, locate the test user and open edit page
   beforeEach(() => {
     cy.loginHydralytica(); // Custom login command
-    cy.visit('https://hydralytica.com/users');
+    cy.visit('/users');
     cy.contains('Dashboard', { timeout: 10000 }).should('be.visible'); // Verify page loaded
 
     // Find the table cell containing the test email fragment, then click the Update link in the same row

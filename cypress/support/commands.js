@@ -4,7 +4,7 @@ Cypress.Commands.add('typeInstant', { prevSubject: 'element' }, (subject, text) 
 });
 // Global login command (unchanged)
 Cypress.Commands.add('loginHydralytica', () => {
-  cy.visit('https://hydralytica.com/signin');
+  cy.visit('https://staging.hydralytica.dynacert.com/');
   cy.get('input[name="email"]').type('john.doe@dynacert.com');
   cy.get('input[name="password"]').type('123456');
   cy.get('button[type="submit"]').contains('Sign In').click();
