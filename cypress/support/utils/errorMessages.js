@@ -1,30 +1,23 @@
-// Validation error messages
+// cypress/support/utils/errorMessages.js
+
 export const validationErrors = {
   required: 'This field is required',
-  tooLong: 'Input is too long',
-  email: 'Please enter a valid email address',
-  phone: 'Please enter a valid phone number',
-  url: 'Please enter a valid website URL',
-  postalCode: 'Please enter a valid postal code',
-  passwordMatch: "Passwords don't match",
+  orgNameRequired: 'Organization name is required',
+  emailRequired: 'Email is required',
+  emailInvalid: 'Email is invalid',
+  tooShort: 'Must be at least 2 characters',
+  tooLong: 'Input is too long',   // ✅ confirmed from HTML
+  postalCodeInvalid: 'Postal code is invalid',
   contactIsRequired: 'At least one contact is required',
   addressIsRequired: 'At least one address is required',
   cantRemoveLoginEmail: 'Login email cannot be removed',
   cantChangeLoginEmailType: 'Login email type cannot be changed',
   cantHaveMultipleLoginEmails: 'There can only be one login email',
+  invalidCharacters: 'Contains invalid characters'
 };
 
-// Status error messages
 export const statusErrors = {
-  generic: 'An error occurred',
-  create: 'Error creating resource',
-  update: 'Error updating resource',
-  delete: 'Error deleting resource',
-  install: 'Error installing resource',
-  load: 'Error loading data',
-  auth: 'Authentication required',
-  permission: "You don't have permission for this action",
-  notFound: 'Resource not found',
-  signin: 'Sign in failed. Please check your credentials.',
-  preferenceId: 'Missing preference ID',
+  create: 'Error creating organization. Please try again.',
+  update: 'Error updating organization. Please try again.',
+  delete: 'Error deleting organization. Please try again.'
 };

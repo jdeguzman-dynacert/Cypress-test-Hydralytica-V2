@@ -1,0 +1,408 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 14,
+    "passes": 1,
+    "pending": 0,
+    "failures": 13,
+    "start": "2025-08-18T13:15:55.847Z",
+    "end": "2025-08-18T13:19:00.110Z",
+    "duration": 184263,
+    "testsRegistered": 14,
+    "passPercent": 7.142857142857142,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "dbd9e40d-d735-4c5b-883b-d355a41002c9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\create_organization.cy.js",
+      "file": "cypress\\e2e\\create_organization.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+          "title": "Hydralytica v2 - Create Organization with Extensive Validations",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "creates a new organization with valid inputs",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations creates a new organization with valid inputs",
+              "timedOut": null,
+              "duration": 28270,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Fill in the organization name\ncy.get('input[name=\"name\"]').clear().type(uniqueOrgName);\n// Select organization type from the first dropdown\ncy.get('select[aria-hidden=\"true\"]').eq(0).select('Corporate', {\n  force: true\n});\n// Select the parent organization from the second dropdown\ncy.get('select[aria-hidden=\"true\"]').eq(1).find('option').contains('dynaCERT Inc.').then($option => {\n  cy.get('select[aria-hidden=\"true\"]').eq(1).select($option.attr('value'), {\n    force: true\n  });\n});\n// Fill in optional notes\ncy.get('textarea[name=\"notes\"]').clear().type('Test org created by Cypress.');\n// Fill in the main contact email\ncy.get('input[name=\"contactFields.contact\"]').clear().type(uniqueEmail);\n// Fill in a description for the contact\ncy.get('textarea[name=\"contactFields.description\"]').clear().type('Main contact email.');\n// Add contact information (clicks the first \"Add\" button in the section)\ncy.contains('button', 'Add').eq(0).should('be.visible').click({\n  force: true\n});\n// Fill in address fields\ncy.get('input[name=\"addressFields.country\"]').clear().type('Canada');\ncy.get('input[name=\"addressFields.city\"]').clear().type('Toronto');\ncy.get('input[name=\"addressFields.address\"]').clear().type('123 Queen Street');\ncy.get('input[name=\"addressFields.zipCode\"]').clear().type('M5H 2N2');\ncy.get('input[name=\"addressFields.reference\"]').clear().type('Suite 500');\ncy.get('input[name=\"addressFields.description\"]').clear().type('Head office location.');\n// Pause briefly to ensure UI is ready\ncy.wait(1000);\n// Add address to the organization record\ncy.contains('div[data-slot=\"card-title\"]', 'Address').parents('[data-slot=\"card\"]').within(() => {\n  cy.contains('button', 'Add').click();\n});\n// Submit the form to create the organization\ncy.contains('button', 'Create', {\n  timeout: 10000\n}).click();\n// (Optional) Add assertions to verify successful creation",
+              "err": {},
+              "uuid": "18e9cc8d-6288-436d-acd2-f2d999193d8f",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects overly long organization name",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects overly long organization name",
+              "timedOut": null,
+              "duration": 36205,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const longName = 'A'.repeat(256); // Exceeds character limit\ncy.get('input[name=\"name\"]').clear().type(longName);\ncy.contains('button', 'Create').should('be.disabled'); // Submission should be blocked",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:75:36)",
+                "diff": null
+              },
+              "uuid": "d47be455-f73e-4686-b15f-d31be0aea9d9",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects overly short organization name",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects overly short organization name",
+              "timedOut": null,
+              "duration": 8469,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"name\"]').clear().type('A');\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:81:36)",
+                "diff": null
+              },
+              "uuid": "ea9b04e8-6da5-44ad-abc4-9336593c018f",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects SQL injection attempt in organization name",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects SQL injection attempt in organization name",
+              "timedOut": null,
+              "duration": 9493,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const maliciousInput = \"' OR 1=1 --\";\ncy.get('input[name=\"name\"]').clear().type(maliciousInput);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:88:36)",
+                "diff": null
+              },
+              "uuid": "01f200f2-87cf-4ae1-9fe9-1f7cb0de693f",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects XSS attempt in notes field",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects XSS attempt in notes field",
+              "timedOut": null,
+              "duration": 12038,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const xssInput = \"<script>alert('xss')</script>\";\ncy.get('textarea[name=\"notes\"]').clear().type(xssInput);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:95:36)",
+                "diff": null
+              },
+              "uuid": "3b621f85-1057-4bd8-8d6e-b80294618be7",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects invalid email: plainaddress",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects invalid email: plainaddress",
+              "timedOut": null,
+              "duration": 8540,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"contactFields.contact\"]').clear().type(email);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:110:38)",
+                "diff": null
+              },
+              "uuid": "04b7b6f2-189a-4705-aada-b7e748b2fed7",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects invalid email: @missingusername.com",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects invalid email: @missingusername.com",
+              "timedOut": null,
+              "duration": 8269,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"contactFields.contact\"]').clear().type(email);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:110:38)",
+                "diff": null
+              },
+              "uuid": "a2ff0f47-77a5-453b-9b61-eec40d769c6e",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects invalid email: username@.com",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects invalid email: username@.com",
+              "timedOut": null,
+              "duration": 8792,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"contactFields.contact\"]').clear().type(email);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:110:38)",
+                "diff": null
+              },
+              "uuid": "112c69e0-f8e2-44b3-8a57-9c26eb1a18d9",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects invalid email: user name@example.com",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects invalid email: user name@example.com",
+              "timedOut": null,
+              "duration": 8557,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"contactFields.contact\"]').clear().type(email);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:110:38)",
+                "diff": null
+              },
+              "uuid": "6dc81121-0bc5-4008-a023-0b3559e6a8b7",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "rejects invalid email: username@example..com",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations rejects invalid email: username@example..com",
+              "timedOut": null,
+              "duration": 8538,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[name=\"contactFields.contact\"]').clear().type(email);\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:110:38)",
+                "diff": null
+              },
+              "uuid": "a5db5e86-a90e-48b7-b9f2-3789c0a3fa13",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "disables create button if required fields are empty",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations disables create button if required fields are empty",
+              "timedOut": null,
+              "duration": 9024,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Clear required fields\ncy.get('input[name=\"name\"]').clear();\ncy.get('input[name=\"contactFields.contact\"]').clear();\n// Create button should be disabled\ncy.contains('button', 'Create').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<button.inline-flex.items-center.justify-center.gap-2.whitespace-nowrap.rounded-md.text-sm.font-medium.transition-[color,box-shadow].disabled:pointer-events-none.disabled:opacity-50.[&_svg]:pointer-events-none.[&_svg:not([class*=\\'size-\\'])]:size-4.[&_svg]:shrink-0.outline-none.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive.cursor-pointer.border.border-primary.text-foreground.hover:text-primary-foreground.shadow-xs.hover:bg-primary/90.h-9.px-4.py-2.has-[>svg]:px-3>' to be 'disabled'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:121:36)",
+                "diff": null
+              },
+              "uuid": "5ac66b0d-e4ba-4b8f-b31c-005f3724c7d6",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "displays error message on server failure",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations displays error message on server failure",
+              "timedOut": null,
+              "duration": 16033,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Intercept the POST request to simulate server error\ncy.intercept('POST', '/organizations', {\n  statusCode: 500,\n  body: {\n    error: 'Internal Server Error'\n  }\n}).as('postOrgFail');\n// Fill in minimum required fields\ncy.get('input[name=\"name\"]').clear().type(uniqueOrgName);\ncy.get('input[name=\"contactFields.contact\"]').clear().type(uniqueEmail);\ncy.get('select[aria-hidden=\"true\"]').eq(0).select('Corporate', {\n  force: true\n});\ncy.get('select[aria-hidden=\"true\"]').eq(1).find('option').contains('dynaCERT Inc.').then($option => {\n  cy.get('select[aria-hidden=\"true\"]').eq(1).select($option.attr('value'), {\n    force: true\n  });\n});\n// Click create to trigger the mock failure\ncy.contains('button', 'Create').click();\ncy.wait('@postOrgFail');\n// Verify error message is displayed\ncy.contains('An error occurred while creating organization').should('be.visible');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `postOrgFail`. No request ever occurred.\n\nhttps://on.cypress.io/wait",
+                "estack": "CypressError: Timed out retrying after 5000ms: `cy.wait()` timed out waiting `5000ms` for the 1st request to the route: `postOrgFail`. No request ever occurred.\n\nhttps://on.cypress.io/wait\n    at cypressErr (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:77535:18)\n    at Object.errByPath (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:77589:10)\n    at checkForXhr (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:138823:84)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:138849:28)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:4285:29)\n    at whenStable (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:147205:68)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:147146:14)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1671:18)\n    at Promise._fulfill (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1615:18)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:5420:46)",
+                "diff": null
+              },
+              "uuid": "cd7d3caf-fa2e-4ecc-97cc-adbcc53d9287",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "shows aria-invalid on empty required fields after blur",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations shows aria-invalid on empty required fields after blur",
+              "timedOut": null,
+              "duration": 8834,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Clear and blur name input\ncy.get('input[name=\"name\"]').clear().blur();\ncy.get('input[name=\"name\"]').should('have.attr', 'aria-invalid', 'true');\n// Clear and blur contact email\ncy.get('input[name=\"contactFields.contact\"]').clear().blur();\ncy.get('input[name=\"contactFields.contact\"]').should('have.attr', 'aria-invalid', 'true');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<input#:Ropuuunlb:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<input#:Ropuuunlb:-form-item.border-input.file:text-foreground.placeholder:text-muted-foreground.selection:bg-primary.selection:text-primary-foreground.flex.h-9.w-full.min-w-0.rounded-md.border.bg-transparent.px-3.py-1.text-base.shadow-xs.transition-[color,box-shadow].outline-none.file:inline-flex.file:h-7.file:border-0.file:bg-transparent.file:text-sm.file:font-medium.disabled:pointer-events-none.disabled:cursor-not-allowed.disabled:opacity-50.md:text-sm.focus-visible:border-ring.focus-visible:ring-ring/50.focus-visible:ring-[3px].aria-invalid:ring-destructive/20.dark:aria-invalid:ring-destructive/40.aria-invalid:border-destructive>' to have attribute 'aria-invalid' with the value 'true', but the value was 'false'\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:152:33)",
+                "diff": "- 'false'\n+ 'true'\n"
+              },
+              "uuid": "98012f41-3c8f-4992-8bf7-2bc5f278dd7b",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "resets form when clicking Cancel",
+              "fullTitle": "Hydralytica v2 - Create Organization with Extensive Validations resets form when clicking Cancel",
+              "timedOut": null,
+              "duration": 10415,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Fill in some temporary values\ncy.get('input[name=\"name\"]').clear().type('Temp Org');\ncy.get('input[name=\"contactFields.contact\"]').clear().type('temp@example.com');\n// Click Cancel\ncy.contains('button', 'Cancel').click();\n// Fields should reset to empty\ncy.get('input[name=\"name\"]').should('have.value', '');\ncy.get('input[name=\"contactFields.contact\"]').should('have.value', '');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `input[name=\"name\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `input[name=\"name\"]`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/create_organization.cy.js:169:33)",
+                "diff": null
+              },
+              "uuid": "1a475d37-dcb8-4d32-9814-0b49e800adfa",
+              "parentUUID": "1f2aa996-4d07-4b78-a000-fa842197eba6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "18e9cc8d-6288-436d-acd2-f2d999193d8f"
+          ],
+          "failures": [
+            "d47be455-f73e-4686-b15f-d31be0aea9d9",
+            "ea9b04e8-6da5-44ad-abc4-9336593c018f",
+            "01f200f2-87cf-4ae1-9fe9-1f7cb0de693f",
+            "3b621f85-1057-4bd8-8d6e-b80294618be7",
+            "04b7b6f2-189a-4705-aada-b7e748b2fed7",
+            "a2ff0f47-77a5-453b-9b61-eec40d769c6e",
+            "112c69e0-f8e2-44b3-8a57-9c26eb1a18d9",
+            "6dc81121-0bc5-4008-a023-0b3559e6a8b7",
+            "a5db5e86-a90e-48b7-b9f2-3789c0a3fa13",
+            "5ac66b0d-e4ba-4b8f-b31c-005f3724c7d6",
+            "cd7d3caf-fa2e-4ecc-97cc-adbcc53d9287",
+            "98012f41-3c8f-4992-8bf7-2bc5f278dd7b",
+            "1a475d37-dcb8-4d32-9814-0b49e800adfa"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 181477,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "create-organization",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/create-organization",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "create-organization"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

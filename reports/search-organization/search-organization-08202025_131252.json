@@ -1,0 +1,212 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 6,
+    "passes": 4,
+    "pending": 0,
+    "failures": 2,
+    "start": "2025-08-20T17:12:04.563Z",
+    "end": "2025-08-20T17:12:52.680Z",
+    "duration": 48117,
+    "testsRegistered": 6,
+    "passPercent": 66.66666666666666,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d949118e-4855-4852-89cd-6c368ce43aca",
+      "title": "",
+      "fullFile": "cypress\\e2e\\search_organization.cy.js",
+      "file": "cypress\\e2e\\search_organization.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+          "title": "Hydralytica v2 - Search Organization",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should navigate to next page first button",
+              "fullTitle": "Hydralytica v2 - Search Organization should navigate to next page first button",
+              "timedOut": null,
+              "duration": 9078,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// first \"next page\" button\ncy.get('button[aria-label=\"Go to next page\"]').first().click({\n  force: true\n});\ncy.get('table tbody tr').should('exist');",
+              "err": {},
+              "uuid": "537cb050-b61a-4cfe-af28-8878c5e6be02",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should navigate to next page second button",
+              "fullTitle": "Hydralytica v2 - Search Organization should navigate to next page second button",
+              "timedOut": null,
+              "duration": 5824,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// second \"next page\" button\ncy.get('button[aria-label=\"Go to next page\"]').eq(1).click({\n  force: true\n});\ncy.get('table tbody tr').should('exist');",
+              "err": {},
+              "uuid": "1e741e48-17e2-4827-98c1-59a497f1f8d7",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should change rows per page",
+              "fullTitle": "Hydralytica v2 - Search Organization should change rows per page",
+              "timedOut": null,
+              "duration": 6698,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button[aria-label=\"Rows per page\"]').first().click({\n  force: true\n});\n// Wait for listbox and select \"50\"\ncy.get('div[role=\"listbox\"]').should('be.visible').contains('50').click({\n  force: true\n});\n// Assert rows are <= 50\ncy.get('table tbody tr').its('length').should('be.lte', 50);",
+              "err": {},
+              "uuid": "8874c91f-7eb0-4d58-b38c-2c018b9b15e4",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should confirm Delete Organization",
+              "fullTitle": "Hydralytica v2 - Search Organization should confirm Delete Organization",
+              "timedOut": null,
+              "duration": 9364,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('table tbody tr:first-child').within(() => {\n  cy.contains('Delete').click({\n    force: true\n  });\n});\ncy.contains('Confirm Delete').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Delete' within the element: <tr.data-[state=selected]:bg-muted.border-b.transition-colors.hover:bg-alt-bg> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Delete' within the element: <tr.data-[state=selected]:bg-muted.border-b.transition-colors.hover:bg-alt-bg> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:177:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "cd20817c-0435-4a5f-806f-30c8f0aaea1e",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not allow empty search submission",
+              "fullTitle": "Hydralytica v2 - Search Organization should not allow empty search submission",
+              "timedOut": null,
+              "duration": 5517,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[placeholder=\"Criteria\"]').clear();\ncy.contains('button', 'Search').click();\ncy.get('table tbody tr').should('exist'); // still shows results",
+              "err": {},
+              "uuid": "cc09a073-fc34-4383-a6ab-3ae801736905",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should not break on invalid filter combination",
+              "fullTitle": "Hydralytica v2 - Search Organization should not break on invalid filter combination",
+              "timedOut": null,
+              "duration": 10611,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('button', 'Filters').click({\n  force: true\n});\ncy.get('div[role=\"dialog\"][data-state=\"open\"]').should('exist');\ncy.get('div[role=\"dialog\"] button[role=\"combobox\"]').eq(2).click({\n  force: true\n});\ncy.get('div[role=\"dialog\"] li').contains('2').click({\n  force: true\n});\ncy.get('input[placeholder=\"Start Date\"]').type('3000-01-01');\ncy.get('input[placeholder=\"End Date\"]').type('3000-12-31');\ncy.contains('button', 'Done').click();\n// assert the \"No results.\" message is displayed inside the table body\ncy.get('table[data-slot=\"table\"] tbody').contains('td', 'No results.').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[role=\"dialog\"] li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[role=\"dialog\"] li`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:194:7)",
+                "diff": null
+              },
+              "uuid": "f4fc16d8-f01e-43ef-a91c-c192950e1966",
+              "parentUUID": "4ed341f6-1a1a-4934-b673-aa4cb21a05e5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "537cb050-b61a-4cfe-af28-8878c5e6be02",
+            "1e741e48-17e2-4827-98c1-59a497f1f8d7",
+            "8874c91f-7eb0-4d58-b38c-2c018b9b15e4",
+            "cc09a073-fc34-4383-a6ab-3ae801736905"
+          ],
+          "failures": [
+            "cd20817c-0435-4a5f-806f-30c8f0aaea1e",
+            "f4fc16d8-f01e-43ef-a91c-c192950e1966"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 47092,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "search-organization-[datetime]",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/search-organization",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "search-organization-[datetime]"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

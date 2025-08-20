@@ -1,0 +1,335 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 11,
+    "passes": 2,
+    "pending": 0,
+    "failures": 9,
+    "start": "2025-08-19T17:59:18.217Z",
+    "end": "2025-08-19T18:01:00.529Z",
+    "duration": 102312,
+    "testsRegistered": 11,
+    "passPercent": 18.181818181818183,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2438ca9d-54a7-4e0e-85e7-a5ca44bf63a9",
+      "title": "",
+      "fullFile": "cypress\\e2e\\search_organization.cy.js",
+      "file": "cypress\\e2e\\search_organization.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+          "title": "Hydralytica v2 - Search Organization",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should search for a new organization by name",
+              "fullTitle": "Hydralytica v2 - Search Organization should search for a new organization by name",
+              "timedOut": null,
+              "duration": 11675,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button[aria-label=\"Select field\"]').eq(0).click({\n  force: true\n});\ncy.contains('Name', {\n  timeout: 5000\n}).click({\n  force: true\n});\ncy.get('input[name=\"value\"]').clear().type(uniqueOrgName);\ncy.contains('button', 'Search').click();\ncy.contains(uniqueOrgName, {\n  timeout: 5000\n}).should('be.visible');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 4000ms: `cy.clear()` failed because this element:\n\n          `<input data-slot=\"input\" class=\"border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive max-w-[180px] bg-background\" placeholder=\"Criteria\" type=\"text\" value=\"\" name=\"value\">`\n\n          has CSS `pointer-events: none`, inherited from this element:\n\n`<body class=\"__className_d18374\" data-scroll-locked=\"1\" style=\"pointer-events: none;\">...</body>`\n\n          `pointer-events: none` prevents user mouse interaction.\n\n          Fix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with",
+                "estack": "CypressError: Timed out retrying after 4000ms: `cy.clear()` failed because this element:\n\n          `<input data-slot=\"input\" class=\"border-input file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground flex h-9 w-full min-w-0 rounded-md border px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive max-w-[180px] bg-background\" placeholder=\"Criteria\" type=\"text\" value=\"\" name=\"value\">`\n\n          has CSS `pointer-events: none`, inherited from this element:\n\n`<body class=\"__className_d18374\" data-scroll-locked=\"1\" style=\"pointer-events: none;\">...</body>`\n\n          `pointer-events: none` prevents user mouse interaction.\n\n          Fix this problem, or use {force: true} to disable error checking.\n\nhttps://on.cypress.io/element-cannot-be-interacted-with\n    at ensureElDoesNotHaveCSS (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114328:66)\n    at ensureDescendents (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114436:5)\n    at ensureDescendentsAndScroll (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114444:14)\n    at ensureElIsNotCovered (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114575:5)\n    at runAllChecks (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114774:52)\n    at retryActionability (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:114811:16)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:4285:29)\n    at whenStable (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:147205:68)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:147146:14)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1671:18)\n    at Promise._fulfill (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1615:18)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:5420:46)\nFrom Your Spec Code:\n    at Object.proxyGetter [as get] (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:80297:22)\n    at exists (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:146387:26)\n    at elExists (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:146402:10)\n    at ensureExistence (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:146583:22)\n    at onFailFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:146612:53)",
+                "diff": null
+              },
+              "uuid": "e6d3d623-f5dc-47d0-9ef5-2517c1788baf",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should show no results for a non-existent organization",
+              "fullTitle": "Hydralytica v2 - Search Organization should show no results for a non-existent organization",
+              "timedOut": null,
+              "duration": 13970,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button[aria-label=\"Select field\"]').eq(0).click({\n  force: true\n});\ncy.contains('Name', {\n  timeout: 5000\n}).click({\n  force: true\n});\ncy.get('input[name=\"value\"]').clear().type(nonExistentOrg);\ncy.contains('button', 'Search').click();\ncy.contains('No data available', {\n  timeout: 5000\n}).should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'No data available' but never did.",
+                "estack": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'No data available' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:34:56)",
+                "diff": null
+              },
+              "uuid": "c41afc66-f676-4b0b-9c29-08b1579fa0b9",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should reset search filters",
+              "fullTitle": "Hydralytica v2 - Search Organization should reset search filters",
+              "timedOut": null,
+              "duration": 7833,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[placeholder=\"Criteria\"]').type(uniqueOrgName);\ncy.contains('button', 'Reset').click();\ncy.get('input[placeholder=\"Criteria\"]').should('have.value', '');",
+              "err": {},
+              "uuid": "9b4f3549-1eb5-486a-9be3-9fd9dc2e6d99",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should find an existing organization by name",
+              "fullTitle": "Hydralytica v2 - Search Organization should find an existing organization by name",
+              "timedOut": null,
+              "duration": 12507,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button[aria-label=\"Select field\"]').eq(0).click({\n  force: true\n});\ncy.contains('Name', {\n  timeout: 5000\n}).click({\n  force: true\n});\ncy.get('input[name=\"value\"]').clear().type(existingOrg);\ncy.contains('button[aria-label=\"Search\"]').click();\ncy.contains(existingOrg, {\n  timeout: 10000\n}).should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'button[aria-label=\"Search\"]' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'button[aria-label=\"Search\"]' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:48:7)",
+                "diff": null
+              },
+              "uuid": "bf2c413b-0d22-487e-8155-f482ec9022f4",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should have all required search elements",
+              "fullTitle": "Hydralytica v2 - Search Organization should have all required search elements",
+              "timedOut": null,
+              "duration": 4987,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('input[placeholder=\"Criteria\"]').should('exist').and('be.visible');\ncy.get('button[aria-label=\"Select field\"]').should('exist').and('be.visible');\ncy.contains('button', 'Search').should('exist').and('be.visible');\ncy.contains('button', 'Reset').should('exist').and('be.visible');",
+              "err": {},
+              "uuid": "874f0e3a-91d3-498e-ac63-8ea3dc33349f",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should render table headers",
+              "fullTitle": "Hydralytica v2 - Search Organization should render table headers",
+              "timedOut": null,
+              "duration": 8160,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('table thead').should('exist').within(() => {\n  cy.contains('th', 'Name').should('exist');\n  cy.contains('th', 'Status').should('exist');\n  cy.contains('th', 'Created At').should('exist');\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Status' within the element: <thead.[&_tr]:border-b> and with the selector: 'th' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Status' within the element: <thead.[&_tr]:border-b> and with the selector: 'th' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:64:34)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "97c1ab9f-af2a-4fbd-b228-be19077140ce",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort by Name",
+              "fullTitle": "Hydralytica v2 - Search Organization should sort by Name",
+              "timedOut": null,
+              "duration": 5906,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('table thead th').contains('Name').click({\n  force: true\n});\ncy.wait(500);\ncy.get('table tbody tr td:nth-child(1)').then($cells => {\n  const values = [...$cells].map(c => c.innerText.trim());\n  const sorted = [...values].sort((a, b) => a.localeCompare(b));\n  expect(values).to.deep.equal(sorted);\n});\ncy.get('table thead th').contains('Name').click({\n  force: true\n});\ncy.wait(500);\ncy.get('table tbody tr td:nth-child(1)').then($cells => {\n  const values = [...$cells].map(c => c.innerText.trim());\n  const sorted = [...values].sort((a, b) => b.localeCompare(a));\n  expect(values).to.deep.equal(sorted);\n});",
+              "err": {
+                "message": "AssertionError: expected [ Array(10) ] to deeply equal [ Array(10) ]",
+                "estack": "AssertionError: expected [ Array(10) ] to deeply equal [ Array(10) ]\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:76:29)\n    at getRet (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:120949:20)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise.attempt.Promise.try (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:4285:29)",
+                "diff": "- [ 'My Cypress Organization',\n-   'John',\n-   'test organization',\n-   'TEST ORG',\n-   '123',\n-   'T1',\n+ [ '123',\n   'Joe Smith CC',\n   'Joe Smith CC',\n+   'John',\n+   'My Cypress Organization',\n+   'qwerqwer',\n   'rafael mine',\n-   'qwerqwer' ]\n+   'T1',\n+   'TEST ORG',\n+   'test organization' ]\n"
+              },
+              "uuid": "fb4c0592-0f08-4fad-a4b5-58953e10bd97",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should sort by Created At",
+              "fullTitle": "Hydralytica v2 - Search Organization should sort by Created At",
+              "timedOut": null,
+              "duration": 8118,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('table thead th').contains('Created At').click({\n  force: true\n});\ncy.wait(500);\ncy.get('table tbody tr td:nth-child(3)').then($cells => {\n  const values = [...$cells].map(c => new Date(c.innerText.trim()));\n  const sorted = [...values].sort((a, b) => a - b);\n  expect(values).to.deep.equal(sorted);\n});\ncy.get('table thead th').contains('Created At').click({\n  force: true\n});\ncy.wait(500);\ncy.get('table tbody tr td:nth-child(3)').then($cells => {\n  const values = [...$cells].map(c => new Date(c.innerText.trim()));\n  const sorted = [...values].sort((a, b) => b - a);\n  expect(values).to.deep.equal(sorted);\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Created At' within the element: <th.text-muted-foreground.h-10.px-2.text-left.align-middle.font-medium.[&:has([role=checkbox])]:pr-0.[&>[role=checkbox]]:translate-y-[2px]> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Created At' within the element: <th.text-muted-foreground.h-10.px-2.text-left.align-middle.font-medium.[&:has([role=checkbox])]:pr-0.[&>[role=checkbox]]:translate-y-[2px]> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:89:29)",
+                "diff": null
+              },
+              "uuid": "e31e2cc4-258d-4820-946c-2accd2ccdc06",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should filter by organization type (positive and negative)",
+              "fullTitle": "Hydralytica v2 - Search Organization should filter by organization type (positive and negative)",
+              "timedOut": null,
+              "duration": 9102,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('button', 'Filters').click({\n  force: true\n});\ncy.get('div[role=\"dialog\"][data-state=\"open\"]').should('exist');\n// Type -> choose Corporate\ncy.get('div[role=\"dialog\"] button[role=\"combobox\"]').eq(2).click({\n  force: true\n});\ncy.get('div[role=\"dialog\"] li').contains('Corporate', {\n  timeout: 3000\n}).click({\n  force: true\n});\ncy.contains('button', 'Done').click();\ncy.get('table tbody tr').should('contain.text', 'Corporate');\n// Open again, select Non-Profit -> expect no results\ncy.contains('button', 'Filters').click({\n  force: true\n});\ncy.get('div[role=\"dialog\"][data-state=\"open\"]').should('exist');\ncy.get('div[role=\"dialog\"] button[role=\"combobox\"]').eq(2).click({\n  force: true\n});\ncy.get('div[role=\"dialog\"] li').contains('Non-Profit', {\n  timeout: 3000\n}).click({\n  force: true\n});\ncy.contains('button', 'Done').click();\ncy.contains('No data available', {\n  timeout: 5000\n}).should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[role=\"dialog\"] li`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `div[role=\"dialog\"] li`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:113:7)",
+                "diff": null
+              },
+              "uuid": "ab9b4ed9-b948-4ab8-ba09-43f191fa9991",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should navigate pagination",
+              "fullTitle": "Hydralytica v2 - Search Organization should navigate pagination",
+              "timedOut": null,
+              "duration": 8270,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('button[aria-label=\"Next\"]').click({\n  force: true\n});\ncy.get('table tbody tr').should('exist');\ncy.get('button[aria-label=\"Rows per page\"]').click({\n  force: true\n});\ncy.get('div[role=\"listbox\"] li').contains('50', {\n  timeout: 3000\n}).click({\n  force: true\n});\ncy.get('table tbody tr').its('length').should('be.lte', 50);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button[aria-label=\"Next\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `button[aria-label=\"Next\"]`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:128:7)",
+                "diff": null
+              },
+              "uuid": "da7fb0fc-24d2-4a36-9e98-58047b74d46e",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle Delete confirmation",
+              "fullTitle": "Hydralytica v2 - Search Organization should handle Delete confirmation",
+              "timedOut": null,
+              "duration": 9395,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('table tbody tr:first-child').within(() => {\n  cy.contains('Delete').click({\n    force: true\n  });\n});\ncy.contains('Confirm Delete').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Delete' within the element: <tr.data-[state=selected]:bg-muted.border-b.transition-colors.hover:bg-alt-bg> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Delete' within the element: <tr.data-[state=selected]:bg-muted.border-b.transition-colors.hover:bg-alt-bg> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/search_organization.cy.js:139:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "6d448f85-5bb4-45ac-9ebc-0be9fd13795e",
+              "parentUUID": "46af8c7c-7703-489d-9522-1bb50aad79c6",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9b4f3549-1eb5-486a-9be3-9fd9dc2e6d99",
+            "874f0e3a-91d3-498e-ac63-8ea3dc33349f"
+          ],
+          "failures": [
+            "e6d3d623-f5dc-47d0-9ef5-2517c1788baf",
+            "c41afc66-f676-4b0b-9c29-08b1579fa0b9",
+            "bf2c413b-0d22-487e-8155-f482ec9022f4",
+            "97c1ab9f-af2a-4fbd-b228-be19077140ce",
+            "fb4c0592-0f08-4fad-a4b5-58953e10bd97",
+            "e31e2cc4-258d-4820-946c-2accd2ccdc06",
+            "ab9b4ed9-b948-4ab8-ba09-43f191fa9991",
+            "da7fb0fc-24d2-4a36-9e98-58047b74d46e",
+            "6d448f85-5bb4-45ac-9ebc-0be9fd13795e"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 99923,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "search-organization-[datetime]",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/search-organization",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "search-organization-[datetime]"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

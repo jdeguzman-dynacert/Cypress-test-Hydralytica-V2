@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Cypress: Open",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/cypress/bin/cypress",
+      "args": ["open"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Cypress: Run Current Spec",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/node_modules/cypress/bin/cypress",
+      "args": ["run", "--spec", "${file}"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

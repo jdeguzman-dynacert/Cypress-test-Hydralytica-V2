@@ -1,0 +1,293 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 9,
+    "passes": 1,
+    "pending": 0,
+    "failures": 8,
+    "start": "2025-08-20T18:30:54.334Z",
+    "end": "2025-08-20T18:32:03.858Z",
+    "duration": 69524,
+    "testsRegistered": 9,
+    "passPercent": 11.11111111111111,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ced40e74-52ac-45f9-939d-a9d725647208",
+      "title": "",
+      "fullFile": "cypress\\e2e\\edit_organization.cy.js",
+      "file": "cypress\\e2e\\edit_organization.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+          "title": "Hydralytica v2 - Organization Management Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "UC-ORG-002: should edit the first organization and verify updated values",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-002: should edit the first organization and verify updated values",
+              "timedOut": null,
+              "duration": 11170,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Find the first organization card and click its \"Edit\" button\ncy.get('[data-slot=\"card\"]').first().within(() => {\n  cy.contains('Edit').click();\n});\n// Ensure URL is now on edit page\ncy.url().should('include', '/organizations/edit');\n// Update fields with new data\ncy.get('textarea[name=\"notes\"]').clear().type(updatedNotes);\ncy.get('input[name=\"addressFields.city\"]').clear().type(updatedCity);\ncy.get('input[name=\"addressFields.zipCode\"]').clear().type(updatedZip);\n// Use custom typeInstant command to speed typing email\ncy.get('input[name=\"contactFields.contact\"]').clear().typeInstant(newEmail);\n// Click \"Update\" to save changes\ncy.contains('button', 'Update').click();\n// Confirm success notification appears\ncy.contains('Organization updated successfully', {\n  timeout: 10000\n}).should('be.visible');\n// Return to organizations list and verify updated city and email are displayed\ncy.visit('/organizations');\ncy.get('[data-slot=\"card\"]').first().within(() => {\n  cy.contains(updatedCity).should('exist');\n  cy.contains(newEmail).should('exist');\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:24:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "6695210e-675d-4918-a062-0682e99e46be",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-002: should disable update button if required fields are empty",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-002: should disable update button if required fields are empty",
+              "timedOut": null,
+              "duration": 8368,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Edit the first organization card\ncy.get('[data-slot=\"card\"]').first().within(() => {\n  cy.contains('Edit').click();\n});\n// Clear the required contact field\ncy.get('input[name=\"contactFields.contact\"]').clear();\n// The Update button should be disabled because required field is empty\ncy.contains('button', 'Update').should('be.disabled');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:55:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "61f61728-7cc0-423d-9a67-d5d1715488b0",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-002: should show error on server failure during update",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-002: should show error on server failure during update",
+              "timedOut": null,
+              "duration": 8369,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Intercept PUT requests to organizations and force a 500 error response\ncy.intercept('PUT', '/organizations/*', {\n  statusCode: 500,\n  body: {\n    error: 'Update failed'\n  }\n}).as('updateFail');\n// Edit the first organization\ncy.get('[data-slot=\"card\"]').first().within(() => {\n  cy.contains('Edit').click();\n});\n// Change notes and attempt update\ncy.get('textarea[name=\"notes\"]').clear().type('Testing server failure');\ncy.contains('button', 'Update').click();\n// Wait for intercepted request and verify error message is displayed\ncy.wait('@updateFail');\ncy.contains('An error occurred while updating organization').should('be.visible');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:75:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "64d90d6d-76a5-4394-b241-d1264cbd1c72",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-004: should search organization by city or name",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-004: should search organization by city or name",
+              "timedOut": null,
+              "duration": 8364,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const searchTerm = 'Toronto'; // Known city expected to exist\ncy.get('input[placeholder*=\"Search\"]').type(`${searchTerm}{enter}`); // Type search and submit\n// Verify organization card containing search term is visible\ncy.contains('[data-slot=\"card\"]', searchTerm).should('exist');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `input[placeholder*=\"Search\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `input[placeholder*=\"Search\"]`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:90:7)",
+                "diff": null
+              },
+              "uuid": "8e5084ed-7bd9-47fc-a6d8-f1c3d5be612b",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-006: should sort organization list by name",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-006: should sort organization list by name",
+              "timedOut": null,
+              "duration": 8044,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-cy=\"sort-dropdown\"]').click(); // Open sort dropdown\ncy.contains('Sort by Name').click(); // Choose \"Sort by Name\"\ncy.get('[data-slot=\"card\"]').first().should('exist'); // Verify cards are shown (sort applied)",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-cy=\"sort-dropdown\"]`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `[data-cy=\"sort-dropdown\"]`, but never found it.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:97:7)",
+                "diff": null
+              },
+              "uuid": "182ac3c3-00c0-4028-97ec-083a69d11040",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-007: should visually highlight organizations with active units",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-007: should visually highlight organizations with active units",
+              "timedOut": null,
+              "duration": 4016,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.get('[data-slot=\"card\"]').each($card => {\n  if ($card.text().includes('Active Units')) {\n    // Expect the card to have 'highlighted' class for visual emphasis\n    cy.wrap($card).should('have.class', 'highlighted');\n  }\n});",
+              "err": {},
+              "uuid": "4377f094-9b13-4a82-94c9-1575c791df99",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-005: should download organization list as CSV",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-005: should download organization list as CSV",
+              "timedOut": null,
+              "duration": 7353,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.contains('Download CSV').click(); // Click CSV download button\n// Read downloaded CSV file and verify it contains the header \"Organization Name\"\ncy.readFile('cypress/downloads/organizations.csv').should('contain', 'Organization Name');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Download CSV' but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Download CSV' but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:114:7)",
+                "diff": null
+              },
+              "uuid": "701c1bce-bc56-4feb-9ebe-db922252b05f",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-003: should allow assigning a parent organization",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-003: should allow assigning a parent organization",
+              "timedOut": null,
+              "duration": 8946,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// Edit the first organization card\ncy.get('[data-slot=\"card\"]').first().within(() => {\n  cy.contains('Edit').click();\n});\n// Select 'dynaCERT Inc' as the parent organization from dropdown\ncy.get('select[name=\"parentOrganizationId\"]').select('dynaCERT Inc');\ncy.contains('button', 'Update').click();\n// Confirm update success message\ncy.contains('Organization updated successfully', {\n  timeout: 10000\n}).should('be.visible');\n// Return to list and verify parent organization name is shown on card\ncy.visit('/organizations');\ncy.get('[data-slot=\"card\"]').first().should('contain.text', 'dynaCERT Inc');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Edit' within the element: <div.bg-card.text-card-foreground.flex.flex-col.gap-6.rounded-xl.border.py-6.shadow-sm> but never did.\n    at Context.eval (webpack://hydralytica-tests/./cypress/e2e/edit_organization.cy.js:123:9)\n    at withinFn (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135880:8)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135961:16)\n    at __WEBPACK_DEFAULT_EXPORT__ (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:133819:10)\n    at Context.within (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135947:67)\n    at wrapped (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:141532:19)",
+                "diff": null
+              },
+              "uuid": "26273621-342c-4f65-b15c-ef727d9dd5b2",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "UC-ORG-008: should log changes in the activity log",
+              "fullTitle": "Hydralytica v2 - Organization Management Tests UC-ORG-008: should log changes in the activity log",
+              "timedOut": null,
+              "duration": 3802,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('/activity-log'); // Navigate to Activity Log page\n// Check that the log contains an entry for updated organization with new email\ncy.contains('Updated Organization').should('exist');\ncy.contains(newEmail).should('exist');",
+              "err": {
+                "message": "CypressError: `cy.visit()` failed trying to load:\n\nhttps://staging.hydralytica.dynacert.com/activity-log\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`",
+                "estack": "CypressError: `cy.visit()` failed trying to load:\n\nhttps://staging.hydralytica.dynacert.com/activity-log\n\nThe response we received from your web server was:\n\n  > 404: Not Found\n\nThis was considered a failure because the status code was not `2xx`.\n\nIf you do not want status codes to cause failures pass the option: `failOnStatusCode: false`\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135043:76)\n    at visitFailedByErr (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:134449:12)\n    at <unknown> (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:135026:13)\n    at tryCatcher (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1777:23)\n    at Promise._settlePromiseFromHandler (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1489:31)\n    at Promise._settlePromise (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1546:18)\n    at Promise._settlePromise0 (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1591:10)\n    at Promise._settlePromises (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:1667:18)\n    at _drainQueueStep (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:2377:12)\n    at _drainQueue (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:2370:9)\n    at Async._drainQueues (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:2386:5)\n    at Async.drainQueues (https://staging.hydralytica.dynacert.com/__cypress/runner/cypress_runner.js:2256:14)",
+                "diff": null
+              },
+              "uuid": "8e7aa456-49fb-4ea9-87a5-84b1d10f7704",
+              "parentUUID": "7d801ae0-5abf-41ab-bb07-22d64f12ae26",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4377f094-9b13-4a82-94c9-1575c791df99"
+          ],
+          "failures": [
+            "6695210e-675d-4918-a062-0682e99e46be",
+            "61f61728-7cc0-423d-9a67-d5d1715488b0",
+            "64d90d6d-76a5-4394-b241-d1264cbd1c72",
+            "8e5084ed-7bd9-47fc-a6d8-f1c3d5be612b",
+            "182ac3c3-00c0-4028-97ec-083a69d11040",
+            "701c1bce-bc56-4feb-9ebe-db922252b05f",
+            "26273621-342c-4f65-b15c-ef727d9dd5b2",
+            "8e7aa456-49fb-4ea9-87a5-84b1d10f7704"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 68432,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "edit-organization-[datetime]",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "reports/edit-organization",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "reportPageTitle": "User Form Test Report",
+        "timestamp": "mmddyyyy_HHMMss",
+        "reportFilename": "edit-organization-[datetime]"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

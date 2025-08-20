@@ -10,11 +10,11 @@ Cypress.Commands.add('loginHydralytica', () => {
   cy.get('button[type="submit"]').contains('Sign In').click();
   cy.url({ timeout: 10000 }).should('not.include', '/signin');
 
-  cy.wait(3000);
+  cy.wait(1000);
 
   cy.get('body').then(($body) => {
     if ($body.text().includes('password') && $body.text().includes('data breach')) {
-      cy.contains(/not now|dismiss|close|understand/i, { timeout: 5000 }).click({ force: true });
+      cy.contains(/not now|dismiss|close|understand/i, { timeout: 1000 }).click({ force: true });
     }
   });
 
@@ -35,7 +35,7 @@ Cypress.Commands.overwrite('type', (originalFn, subject, text, options = {}) => 
 });
 
 // --- Pause 3s after submit/update ---
-Cypress.Commands.overwrite('click', (originalFn, subject, options = {}) => {
+/*Cypress.Commands.overwrite('click', (originalFn, subject, options = {}) => {
   const text = (subject.text() || '').toLowerCase();
 
   if (/(submit|create|update)/.test(text)) {
@@ -45,4 +45,4 @@ Cypress.Commands.overwrite('click', (originalFn, subject, options = {}) => {
   }
 
   return originalFn(subject, options);
-});
+});*/
